@@ -1,0 +1,46 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util">
+	<context:annotation-config />
+	
+	<bean id = "currentDate" class="java.util.Date" scope="prototype"></bean>
+	
+	Application Service
+	<bean name="applicationService"
+		class="com.epam.bench.carrental.server.beans.ServerInformationImpl" />
+		
+	Exporter
+	<bean name="serviceExporter"
+		class="org.springframework.remoting.httpinvoker.SimpleHttpInvokerServiceExporter">
+		<property name="serviceInterface"
+			value="com.epam.bench.carrental.server.beans.ServerInformation" />
+			
+		<property name="service" ref = "applicationService"/>
+	</bean>
+	
+	Http Web Server
+	
+	<bean id="httpServer"
+		class="org.springframework.remoting.support.SimpleHttpServerFactoryBean">
+		<property name="contexts">
+			<map>
+				<entry key="/SpringHttpService/greeting.http" value-ref="serviceExporter" />
+			</map>
+		</property>
+		<property name="port" value="9090" />
+	</bean>
+	
+	<bean id = "response" class = "com.epam.bench.carrental.server.beans.carRentalServerResponse" scope = "prototype">
+		<property name="date" ref="currentDate" />
+		<property name="ipAddress" ref ="inetAddress"/>
+		<property name="ipAddress" value="127.0.0.1" />
+	</bean>
+	
+	<bean id = "inetAddress" class = "java.net.InetAddress">
+	</bean>
+	
+</beans> -->
